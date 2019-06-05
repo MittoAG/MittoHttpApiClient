@@ -6,6 +6,7 @@
     <Company>Mitto AG</Company>
     <Description>Client Api to access Mitto SMS service</Description>
     <RepositoryUrl>https://github.com/MittoAG/MittoHttpApiClient</RepositoryUrl>
+    <PackageTags>Mitto, SMS, API, ReST, Http, Client</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
