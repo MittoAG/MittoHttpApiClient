@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Mitto AG</Authors>
+    <Company>Mitto AG</Company>
+    <Description>Client Api to access Mitto SMS service</Description>
+    <RepositoryUrl>https://github.com/MittoAG/MittoHttpApiClient</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
