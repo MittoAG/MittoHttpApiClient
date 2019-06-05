@@ -8,7 +8,7 @@ namespace MittoHttpApiClientTests
         [Fact]
         public void Test1()
         {
-            var bla = Sms.CreateText().From("4915758918670").To("4915758918671").Text("TestText");
+            var bla = Sms.CreateText().initClient("", "").From("").To("").Text("").Send();
         }
     }
 }

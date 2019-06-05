@@ -42,13 +42,15 @@ namespace MittoHttpApiClient
     public static class SmsExtensions
     {
         public static SendSmsResult Send<TSms>(this TSms sms)
+            where TSms : Sms
         {
-            return sms.Send();
+            return sms.Send<TSms>();
         }
 
-        public static SendSmsResult SendAsync<TSms>(this TSms sms)
+        public static Task<SendSmsResult> SendAsync<TSms>(this TSms sms)
+            where TSms : Sms
         {
-            return sms.SendAsync();
+            return sms.SendAsync<TSms>();
         }
 
         public static TSms initAsyncClient<TSms>(this TSms sms, string apiUrl, string apiKey)

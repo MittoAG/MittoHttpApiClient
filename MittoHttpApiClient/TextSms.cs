@@ -62,7 +62,7 @@ namespace MittoHttpApiClient
             }
         }
 
-        public string Text { get; set; }
+        public new string Text { get; set; }
 
         public bool IsUnicode { get; set; }
 
@@ -71,16 +71,18 @@ namespace MittoHttpApiClient
         internal override SendSmsRequest ToSendSmsRequest()
         {
             Contract.Ensures(Contract.Result<SendSmsRequest>() != null);
+            Contract.Ensures(Text != null);
+
 
             var request = base.ToSendSmsRequest();
             if (IsUnicode || (AutomaticUnicodeRecognition && CharacterSetHelper.AllowedUtf8GsmCharsRegex.IsMatch(Text)))
             {
-                request.Text = CharacterSetHelper.ConvertTextToUnicodeHexString(Text);
+                request.Text = CharacterSetHelper.ConvertTextToUnicodeHexString(Text ?? "");
                 request.Type = MessageContentType.Unicode;
             }
             else
             {
-                request.Text = CharacterSetHelper.ConvertUtf8ToGsmEncodedString(Text);
+                request.Text = CharacterSetHelper.ConvertUtf8ToGsmEncodedString(Text ?? "");
                 request.Type = MessageContentType.GSM;
             }
 

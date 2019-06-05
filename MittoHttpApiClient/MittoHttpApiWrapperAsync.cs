@@ -67,12 +67,11 @@ namespace MittoHttpApiClient
             {
                 throw new ObjectDisposedException(nameof(MittoHttpApiWrapperAsync));
             }
+            var uri = $"sms.json?{request.ToQueryParameterString()}";
+            var httpResponse = await _httpClient.Value.GetAsync(new Uri(uri, UriKind.Relative));
 
-            var httpResponse = await _httpClient.Value.GetAsync(new Uri($"sms?{request.ToQueryParameterString()}", UriKind.Relative));
-
-            httpResponse.EnsureSuccessStatusCode();
-
-            var sendSmsResponse = JsonConvert.DeserializeObject<SendSmsResponse>(await httpResponse.Content.ReadAsStringAsync());
+            var response = await httpResponse.Content.ReadAsStringAsync();
+            var sendSmsResponse = JsonConvert.DeserializeObject<SendSmsResponse>(response);
             return sendSmsResponse;
         }
 
