@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using System.Net.Http;
 
 namespace MittoHttpApiClient
 {

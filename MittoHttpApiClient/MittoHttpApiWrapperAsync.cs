@@ -2,6 +2,8 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MittoHttpApiClient
@@ -13,14 +15,22 @@ namespace MittoHttpApiClient
         private bool _disposed;
         private Lazy<HttpClient> _httpClient;
 
+        private string RequestType = "GET";
+
 
         public MittoHttpApiWrapperAsync(string apiUrl, string apikey)
         {
-            _httpClient = new Lazy<HttpClient>(() => new HttpClient
-            {
-                BaseAddress = new Uri(apiUrl, UriKind.Absolute),
-                DefaultRequestHeaders = { { "X-Mitto-API-Key", apikey } }
+            _httpClient = new Lazy<HttpClient>(() => {
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(apiUrl, UriKind.Absolute),
+                };
+                client.DefaultRequestHeaders.Add("X-Mitto-API-Key", apikey);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                return client;
             });
+
+            
         }
 
         #endregion
@@ -67,8 +77,17 @@ namespace MittoHttpApiClient
             {
                 throw new ObjectDisposedException(nameof(MittoHttpApiWrapperAsync));
             }
-            var uri = $"sms.json?{request.ToQueryParameterString()}";
-            var httpResponse = await _httpClient.Value.GetAsync(new Uri(uri, UriKind.Relative));
+            HttpResponseMessage httpResponse = null;
+            //if (method == HttpMethod.Get)
+            //{
+            //    httpResponse = await _httpClient.Value.GetAsync(new Uri($"sms.json?{request.ToQueryParameterString()}", UriKind.Relative));
+            //}
+            //if (method == HttpMethod.Post)
+            //{
+            var stringContent = JsonConvert.SerializeObject(request, Formatting.None, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
+            var strContent = new StringContent(stringContent, Encoding.Default, "application/json");
+            httpResponse = await _httpClient.Value.PostAsync(new Uri("sms", UriKind.Relative), strContent);
+            //}
 
             var response = await httpResponse.Content.ReadAsStringAsync();
             var sendSmsResponse = JsonConvert.DeserializeObject<SendSmsResponse>(response);
