@@ -13,6 +13,54 @@
       "sprId": "ABC.123",
       "number": "2",
       "sscc": "00508107210278829613"
-    }
+    },    {
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "123456",
+      "sprId": "ABC.123",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },    {
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "123456",
+      "sprId": "ABC.123",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },    {
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "123456",
+      "sprId": "ABC.456",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },    {
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "123456",
+      "sprId": "ABC.567",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },    {
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "123456",
+      "sprId": "ABC.789",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },{
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "7890",
+      "sprId": "ABC.0000",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },{
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "7890",
+      "sprId": "ABC.0000",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },{
+      "cartonId": "8a0be38f-b5d9-42fa-964a-b3b12141bb8f",
+      "supplierId": "7890",
+      "sprId": "ABC.0909090",
+      "number": "2",
+      "sscc": "00508107210278829613"
+    },
   ]
 }
